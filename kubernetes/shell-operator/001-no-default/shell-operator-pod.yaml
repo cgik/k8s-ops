@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: 001-no-default
+spec:
+  containers:
+  - name: 001-no-default
+    image: 001-no-default
+    imagePullPolicy: Always

@@ -6,18 +6,11 @@ if [[ $1 == "--config" ]] ; then
   cat <<EOF
 configVersion: v1
 kubernetes:
-- name: OnCreateDeleteNamespace
+- name: OnCreateNamespace
   apiVersion: v1
   kind: Namespace
   executeHookOnEvent:
   - Added
-  - Deleted
-- name: OnModifiedNamespace
-  apiVersion: v1
-  kind: Namespace
-  executeHookOnEvent:
-  - Modified
-  jqFilter: ".metadata.labels"
 EOF
 else
   # ignore Synchronization for simplicity
@@ -33,14 +26,9 @@ else
     resourceEvent=`jq -r ".[$IND].watchEvent" $BINDING_CONTEXT_PATH`
     resourceName=`jq -r ".[$IND].object.metadata.name" $BINDING_CONTEXT_PATH`
 
-    if [[ $bindingName == "OnModifiedNamespace" ]] ; then
-      echo "Namespace $resourceName labels were modified"
-    else
-      if [[ $resourceEvent == "Added" ]] ; then
-        echo "Namespace $resourceName was created"
-      else
-        echo "Namespace $resourceName was deleted"
-      fi
+    if [[ $resourceEvent == "Added" ]] ; then
+      kubectl label namespace $resourceName istio-injection=enabled --overwrite
+      echo "Altered namespace $resourceName to include istio-injection"
     fi
   done
 fi

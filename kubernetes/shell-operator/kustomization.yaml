@@ -6,6 +6,6 @@ resources:
 - shell-operator-pod.yaml
 - shell-operator-rbac.yaml
 images:
-- name: 001-no-default
-  newName: registry.local/001-no-default
-  newTag: 1.0.0
+- name: shell-operator
+  newName: cgik/testing:shell-operator
+  #newTag: latest

@@ -2,9 +2,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: 001-no-default
+  name: shell-operator
 spec:
   containers:
-  - name: 001-no-default
-    image: 001-no-default
-    imagePullPolicy: IfNotPresent
+  - name: shell-operator
+    image: shell-operator
+    imagePullPolicy: Always
+  serviceAccountName: monitor-namespaces-acc

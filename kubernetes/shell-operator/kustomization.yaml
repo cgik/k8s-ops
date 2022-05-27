@@ -1,11 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: shell-operator
+
 resources:
 - shell-operator-ns.yaml
-- shell-operator-pod.yaml
 - shell-operator-rbac.yaml
+- shell-operator-pod.yaml
+
 images:
 - name: shell-operator
-  newName: cgik/testing:shell-operator
-  #newTag: latest
+  newName: cgik/testing
+  newTag: shell-operator

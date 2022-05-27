@@ -6,7 +6,7 @@ if [[ $1 == "--config" ]] ; then
   cat <<EOF
 configVersion: v1
 kubernetes:
-- name: OnCreateNamespace
+- name: OnCreateDeleteNamespace
   apiVersion: v1
   kind: Namespace
   executeHookOnEvent:

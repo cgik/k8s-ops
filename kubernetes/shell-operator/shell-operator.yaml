@@ -18,11 +18,14 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: monitor-namespaces
+  namespace: kube-system
 rules:
 - apiGroups: [""]
   resources: ["namespaces"]
   verbs: ["get", "watch", "list", "patch"]
+
 ---
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:

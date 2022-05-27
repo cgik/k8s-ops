@@ -3,10 +3,7 @@ kind: Kustomization
 namespace: shell-operator
 
 resources:
-- shell-operator-ns.yaml
-- shell-operator-sa.yaml
-- shell-operator-rbac.yaml
-- shell-operator-pod.yaml
+- shell-operator.yaml
 
 images:
 - name: shell-operator
